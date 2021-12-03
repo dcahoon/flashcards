@@ -1,0 +1,71 @@
+import React, { useState } from "react"
+import { createDeck } from "../utils/api"
+
+export default function New() {
+    
+    const initialFormData = {
+        name: "New Deck",
+        description: "Enter a description here...",
+    }
+
+    const [formData, setFormData] = useState({...initialFormData})
+
+    const handleChange = ({ target }) => {
+        const value = target.value
+        setFormData({
+            ...formData,
+            [target.name]: value,
+        })
+
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        createDeck(formData)
+    }
+
+    return (
+        <React.Fragment>
+            <h1>Create Deck</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="py-1">
+                    <label htmlFor="name">
+                        Deck Name:
+                    </label>
+                    <div>
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            onChange={handleChange}
+                            value={formData.name}
+                            className="w-100"
+                        >
+                        </input>
+                    </div>
+                </div>
+                <div className="py-1">
+                    <label htmlFor="description">
+                        Description:
+                    </label>
+                    <div>
+                        <input
+                            type="textarea"
+                            name="description"
+                            id="description"
+                            onChange={handleChange}
+                            value={formData.description}
+                            className="w-100"
+                            rows="3"
+                        >
+                        </input>
+                    </div>
+                </div>
+                <div className="pt-4">
+                    <button type="cancel" className="btn btn-dark">Cancel</button>
+                    <button type="submit" className="btn btn-primary mx-2">Create</button>
+                </div>
+            </form>
+        </React.Fragment>
+    )
+}
