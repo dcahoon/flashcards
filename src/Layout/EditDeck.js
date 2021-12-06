@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { useRouteMatch, useParams, useHistory } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { readDeck, updateDeck } from "../utils/api"
 
 /* 
 *   Parents: index > Decks > Deck
-*   Children: Edit, NewCard, Card
+*   Children: none
 *
 *   Description: Routes information about cards based on url.
 */
@@ -17,7 +17,6 @@ export default function EditDeck() {
     }
     
     const [deck, setDeck] = useState(initialDeck)
-    const { url } = useRouteMatch()
     const { deckId } = useParams()
     const history = useHistory()
 
@@ -44,7 +43,7 @@ export default function EditDeck() {
 
         return () => abortController.abort()
 
-    }, [])
+    }, [deckId])
 
 
     const handleChange = ({ target }) => {
@@ -76,8 +75,6 @@ export default function EditDeck() {
         
         changeDeckInfoWithApi()
         
-        console.log("handleSubmit in EditDeck")
-        
         history.push(`/decks/${deckId}`)
         
         return () => abortController.abort()
@@ -90,10 +87,10 @@ export default function EditDeck() {
         return (
             <React.Fragment>
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href={`/decks/${deckId}`}>{deck.name}</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit Deck</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="/">Home</a></li>
+                        <li className="breadcrumb-item"><a href={`/decks/${deckId}`}>{deck.name}</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Edit Deck</li>
                     </ol>
                 </nav>
                 <form onSubmit={handleSubmit}>

@@ -15,7 +15,7 @@ export default function Edit() {
     const history = useHistory()
 
     const { deckId, cardId } = useParams()
-    const [card, setCard] = useParams({})
+    const [card, setCard] = useState({})
     const [deck, setDeck] = useState({}) 
 
     useEffect(() => {
@@ -23,13 +23,18 @@ export default function Edit() {
         const { signal } = new AbortController()
 
         async function getDeckFromApi() {
+            
             try {
                 const deckResponse = await readDeck(deckId, signal)
                 setDeck(deckResponse)
                 const cardResponse = await readCard(cardId, signal)
                 setCard(cardResponse)
             } catch (error) {
-                console.log(error)
+                if (error.message === "AbortError") {
+
+                } else {
+                    throw error
+                }
             }
         }
         getDeckFromApi()
@@ -65,40 +70,40 @@ export default function Edit() {
 
     }
 
-    if (card) {
+    if (deck.id) {
 
         return (
             <React.Fragment>
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href={`/decks/${deckId}`}>{deck.name}</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit Card</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="/">Home</a></li>
+                        <li className="breadcrumb-item"><a href={`/decks/${deckId}`}>{deck.name}</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Edit Card</li>
                     </ol>
                 </nav>
                 <form onSubmit={handleSubmit}>
                     <h2>Edit Card {card.id}</h2>
                     <div>
                         <label htmlFor="front">Front:  </label>
-                        <input
-                            type="text"
+                        <textarea
+                            type="textarea"
                             name="front"
                             id="front"
                             onChange={handleChange}
                             value={card.front}
                             className="w-100"
-                        />
+                        ></textarea>
                     </div>
                     <div>
                         <label htmlFor="back">Back: </label>
-                        <input
-                            type="text"
+                        <textarea
+                            type="textarea"
                             name="back"
                             id="back"
                             onChange={handleChange}
                             value={card.back}
                             className="w-100"
-                        />
+                        ></textarea>
                     </div>
                     <button type="submit" className="btn btn-primary my-4 mx-2">
                         Save

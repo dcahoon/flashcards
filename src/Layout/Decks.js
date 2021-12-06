@@ -1,8 +1,9 @@
 import React from "react"
-import { Switch, Route, useRouteMatch } from "react-router-dom"
+import { Switch, Route } from "react-router-dom"
 import New from "./New"
 import Deck from "./Deck"
 import DecksList from "./DecksList"
+import NotFound from "./NotFound"
 
 /* 
 *   Parents: index
@@ -13,19 +14,23 @@ import DecksList from "./DecksList"
 
 export default function Decks() {
 
-    const { path } = useRouteMatch()
-
     return (
         <React.Fragment>
             <Switch>
-                <Route exact path={["/", `${path}decks`]}>
+                <Route exact path={"/"}>
                     <DecksList />
                 </Route>
-                <Route path={`${path}decks/new`}>
+                <Route exact path={"/decks"}>
+                    <DecksList />
+                </Route>
+                <Route exact path={"/decks/new"}>
                     <New />
                 </Route>
-                <Route path={`${path}decks/:deckId`}>
+                <Route path={"/decks/:deckId"}>
                     <Deck />
+                </Route>
+                <Route path={"/decks/*"}>
+                    <NotFound />
                 </Route>
             </Switch>
         </React.Fragment>

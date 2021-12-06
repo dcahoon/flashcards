@@ -58,8 +58,11 @@ export default function DecksList() {
 
     const decksDisplay = decks.map((deck, index) => (
         <div className="card p-4 mt-4" key={index}>
-            <p>Deck Id: {deck.id}</p>
-            <h2 className="card-title">{deck.name}</h2>
+            <div className="row">
+
+                <h2 className="card-title col-10">{deck.name}</h2>
+                <p className="col-2">{deck.cards.length} cards</p>
+            </div>
             <p className="card-text">{deck.description}</p>
             <div>
                 <Link className="btn btn-dark" to={`/decks/${deck.id}`}>

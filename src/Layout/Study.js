@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useParams, useRouteMatch, useHistory } from "react-router-dom"
+import { Link, useParams, useHistory } from "react-router-dom"
 import { readDeck } from "../utils/api"
 
 /* 
@@ -15,7 +15,6 @@ import { readDeck } from "../utils/api"
 
 export default function Study() {
 
-    const { url } = useRouteMatch() //
     const { deckId } = useParams()
     const history = useHistory()
 
@@ -50,7 +49,7 @@ export default function Study() {
 
     }, [])
 
-    const handleClick = (event) => {
+    const handleClick = () => {
         setFront(!front)
         if (front && index === deck.cards.length - 1) {
             if (window.confirm("Would you like to restart this deck?")) {
@@ -72,50 +71,70 @@ export default function Study() {
         return
     }
 
-    if (deck.id && deck.cards.length > 2) {
+    if (deck.id) {
         
-        const deckPath = `/decks/${deckId}`
         return(
             <React.Fragment>
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href={`/decks/${deckId}`}>{deck.name}</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Study</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="/">Home</a></li>
+                        <li className="breadcrumb-item"><a href={`/decks/${deckId}`}>{deck.name}</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Study</li>
                     </ol>
                 </nav>
                 <h1>Study: {deck.name}</h1>
-                <div className="row justify-content-center my-5">
-                    <div className="card p-4 col-8">
-                        <p className="p-0 m-0">Card {index + 1} of {deck.cards.length}</p>
-                        {
-                            front && deck.cards[index] && deck.cards.length > 2
-                                ? <h3 className="px-4 py-5">{deck.cards[index].front}</h3>
-                                : <h3 className="px-4 py-5">{deck.cards[index].back}</h3>
-                        }
-                        <div className="row">
-                            <button className="btn btn-dark" onClick={() => handleClick()}>
-                                Flip
-                            </button>
-                            {
-                                !front && index < deck.cards.length
-                                    ?   <button 
-                                            className="btn btn-primary ml-3" 
-                                            onClick={() => incrementIndex()}
-                                            disabled={index === deck.cards.length - 1}
-                                        >
-                                            Next Card
-                                        </button>
-                                    :   <></>
-                            }
+                {                        
+                    deck.cards.length > 2 && (
+                        <div className="row justify-content-center my-5">
+                            <div className="card p-4 col-8">
+                                <p className="p-0 m-0">Card {index + 1} of {deck.cards.length}</p>
+                                {
+                                    front && deck.cards[index]
+                                        ? <h3 className="px-4 py-5">{deck.cards[index].front}</h3>
+                                        : <h3 className="px-4 py-5">{deck.cards[index].back}</h3>
+                                }
+                                {
+                                    front 
+                                        ? (
+                                            <div className="row">
+                                                <button className="btn btn-dark mx-2" onClick={() => handleClick()}>
+                                                    Flip
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="row">
+                                                <button className="btn btn-dark mx-2" onClick={() => handleClick()}>
+                                                    Flip
+                                                </button>
+                                                <button
+                                                    className="btn btn-primary mx-2" 
+                                                    onClick={incrementIndex}
+                                                >
+                                                    Next Card
+                                                </button>
+                                            </div>
+                                        )
+                                }
+
+                            </div>
+
                         </div>
-                    </div>
-                </div>          
+                    )
+                }
+                {
+                    deck.cards.length < 3 && (
+                        <div className="justify-content-center my-5">
+                            <h2>Not enough cards.</h2>
+                            <p>You need at least 3 cards to study. There are {deck.cards.length} cards in this deck.</p>
+                            <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary">
+                                Add Card
+                            </Link>
+                        </div>
+                    )                
+                }
             </React.Fragment>
         )
     }
-
-
     return "Loading..."
 
 }

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
-import { Link, useParams, useHistory } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { createCard, readCard, readDeck } from "../utils/api"
 
 /* 
-*   Parents: index > Decks > Deck 
-*   Children: none
+*   Parents:    index > Decks > Deck
+                index > Decks > Deck > Study
+*   Children:   none
 *
 *   Description: 
 */
@@ -14,6 +15,7 @@ export default function NewCard() {
     const { deckId, cardId } = useParams()
     const history = useHistory()
     const { signal } = new AbortController()
+    
     const initialFormData = {
         id: 0,
         front: "Question/Card Front",
@@ -29,16 +31,16 @@ export default function NewCard() {
         async function getDeckFromApi() {
             try {
                 const deckResponse = await readDeck(deckId, signal)
-                setDeck(deckResponse)
+                setDeck(() => deckResponse)
                 const cardResponse = await readCard(cardId, signal)
-                setCard(cardResponse)
+                setCard(() => cardResponse)
             } catch (error) {
                 console.log(error)
             }
         }
         getDeckFromApi()
 
-    }, [])
+    }, [deckId, cardId])
     
     const handleChange = ({ target }) => {
         const value = target.value
@@ -51,7 +53,6 @@ export default function NewCard() {
     const handleSubmit = (event) => {
         event.preventDefault()
         createCard(deckId, newCard, signal)
-        console.log("card added, deckId:", deckId)
         history.push(`/decks/${deckId}`)
     }
 
@@ -59,45 +60,47 @@ export default function NewCard() {
 
         <React.Fragment>
             <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href={`/decks/${deckId}`}>{deck.name}</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Card</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="/">Home</a></li>
+                        <li className="breadcrumb-item"><a href={`/decks/${deckId}`}>{deck.name}</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Add Card</li>
                     </ol>
                 </nav>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="front">
+                    <label htmlFor="front" className="row m-0">
                         Front: 
-                        <input
-                            type="text"
-                            name="front"
-                            id="front"
-                            value={newCard.front}
-                            onChange={handleChange}
-                        >
-                        </input>
                     </label>
+                    <textarea
+                        type="text"
+                        name="front"
+                        id="front"
+                        value={newCard.front}
+                        onChange={handleChange}
+                        rows="3"
+                        className="w-100"
+                    >
+                    </textarea>
                 </div>
                 <div>
-                    <label htmlFor="back">
+                    <label htmlFor="back" className="row m-0">
                         Back: 
-                        <input
-                            type="text"
-                            name="back"
-                            id="back"
-                            value={newCard.back}
-                            onChange={handleChange}
-                        >
-                        </input>
                     </label>
+                    <textarea
+                        type="text"
+                        name="back"
+                        id="back"
+                        value={newCard.back}
+                        onChange={handleChange}
+                        rows="3"
+                        className="w-100"
+                    >
+                    </textarea>
                 </div>
-                <div>
-                    
+                <div className="p-3">
                     <button type="submit" className="btn btn-primary">
                         Create Card
                     </button>
-                    
                 </div>
             </form>
         </React.Fragment>

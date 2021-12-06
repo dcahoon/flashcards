@@ -37,9 +37,9 @@ export default function New() {
     return (
         <React.Fragment>
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">New Deck</li>
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="/">Home</a></li>
+                    <li className="breadcrumb-item active" aria-current="page">New Deck</li>
                 </ol>
             </nav>
             <h1>Create Deck</h1>
@@ -65,8 +65,8 @@ export default function New() {
                         Description:
                     </label>
                     <div>
-                        <input
-                            type="textarea"
+                        <textarea
+                            type="text"
                             name="description"
                             id="description"
                             onChange={handleChange}
@@ -74,7 +74,7 @@ export default function New() {
                             className="w-100"
                             rows="3"
                         >
-                        </input>
+                        </textarea>
                     </div>
                 </div>
                 <div className="pt-4">

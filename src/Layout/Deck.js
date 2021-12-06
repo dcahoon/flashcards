@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Link, Route, Switch, useRouteMatch, useParams, useHistory } from "react-router-dom"
+import { Route, Switch, useRouteMatch, useParams } from "react-router-dom"
 import Study from "./Study"
 import EditDeck from "./EditDeck"
 import Cards from "./Cards"
@@ -61,10 +61,13 @@ export default function Deck() {
                     <Route path={`${path}/study`}>
                         <Study />
                     </Route>
-                    <Route path={`${path}/edit`}>
+                    <Route exact path={`${path}/edit`}>
                         <EditDeck />
                     </Route>
-                    <Route path={`${path}/cards`}>
+                    <Route exact path={`${path}/cards/new`}>
+                        <Cards deck={deck} setDeck={setDeck} />
+                    </Route>
+                    <Route path={`${path}/cards`, `${path}/cards/:cardId`}>
                         <Cards deck={deck} setDeck={setDeck} />
                     </Route>
                     <Route path={`${path}/*`}>

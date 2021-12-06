@@ -5,9 +5,21 @@ import { Route, Switch } from "react-router-dom"
 import Decks from "./Decks"
 
 /* 
-*   Parents:
-*   Children: Decks, NotFound
+*   Parents: none
+*   Children: Decks, NotFound, Header
 */
+
+/**
+ *  DeckList <>
+ *  New <>
+ *  NotFound <>
+ *  Deck  ->  DeckInfo <>
+ *  Deck  ->  EditDeck <>
+ *  Deck  ->  Study <>
+ *  Deck  ->  Edit  <>
+ *  Deck  ->  Cards ->  Edit <>
+ *  Deck  ->  Cards ->  NewCard <> 
+ */
 
 
 function Layout() {
@@ -17,10 +29,10 @@ function Layout() {
       <Header />
       <div className="container">
         <Switch>
-          <Route exact path={"decks"}>
+          <Route exact path={"/"}>
             <Decks />
           </Route>
-          <Route path={"/"}>
+          <Route path={"/decks"}>
             <Decks />
           </Route>
           <Route path={"/*"}>

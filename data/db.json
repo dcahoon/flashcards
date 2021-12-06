@@ -1,495 +1,75 @@
 {
   "decks": [
     {
-      "name": "react router desc 8",
+      "id": 1,
+      "name": "Rendering in React",
+      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. "
+    },
+    {
+      "name": "React Router",
       "description": "React Router is a collection of navigational components that compose declaratively with your application.",
       "id": 2
     },
     {
-      "name": "react usehistory whatever",
+      "name": "New Dec",
       "description": "Enter a description here...",
-      "id": 9
+      "id": 3
     },
     {
       "name": "New Deck",
       "description": "Enter a description here...",
-      "id": 10
+      "id": 4
     }
   ],
   "cards": [
     {
-      "id": 8,
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
+      "id": 1,
+      "front": "Differentiate between Real DOM and Virtual DOM.",
+      "back": "Virtual DOM updates are faster but do not directly update the HTML",
+      "deckId": 1
     },
     {
-      "id": 19,
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 3
+      "id": 2,
+      "front": "How do you modify the state of a different React component?",
+      "back": "Not at all! State is visible to the component only.",
+      "deckId": 1
     },
     {
-      "id": 24,
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 4
+      "id": 3,
+      "front": "How do you pass data 'down' to a React child component?",
+      "back": "As properties or props",
+      "deckId": 1
     },
     {
-      "id": 26,
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 4
+      "front": "What path will match the follow Route?\n<Route>\n  <NotFound />\n</Route>",
+      "back": "All paths. A route with no path matches all URL's",
+      "deckId": 2,
+      "id": 4
     },
     {
-      "id": 27,
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
+      "front": "What does <Switch> do?",
+      "back": "Renders the first matching child <Route> ",
+      "deckId": 2,
+      "id": 5
+    },
+    {
+      "cards": [],
+      "front": "b",
+      "back": "b",
+      "deckId": 1,
+      "id": 7
     },
     {
       "id": 28,
       "front": "Question/Card Front",
       "back": "Answer/Card Back",
-      "deckId": null
+      "deckId": 3
     },
     {
       "id": 29,
       "front": "Question/Card Front",
       "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "1",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "2",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "3",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "4",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "5",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": 30,
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "10",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "31",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "58",
-      "front": "aisakdjflksjdf",
-      "back": "sdfasdfsdf",
-      "deckId": null
-    },
-    {
-      "id": "sKMTTyt",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "jTcPoEK",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "wCvnlwt",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "1fXcpuq",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "PhPeWoA",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "FesexvW",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "0PwfIOb",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "PnZUsp0",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "45l6PgC",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "9aJ1DNs",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "y88rEDk",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "U9NwBdA",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": null
-    },
-    {
-      "id": "WXD08SJ",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 5
-    },
-    {
-      "id": "BVj_-GA",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 5
-    },
-    {
-      "id": "xZ8TDVR",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 5
-    },
-    {
-      "id": "DANMkT7",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 5
-    },
-    {
-      "id": "E0uxTSK",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 5
-    },
-    {
-      "id": "5VVwfiF",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 5
-    },
-    {
-      "id": "mNryC7-",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 5
-    },
-    {
-      "id": "_ipWf10",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 5
-    },
-    {
-      "id": "pU7seHF",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 5
-    },
-    {
-      "id": "9l4u4rY",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
       "deckId": 3
-    },
-    {
-      "id": "xnWxU1f",
-      "front": "Question/Card changed to something else",
-      "back": "Answer/Card Back",
-      "deckId": 2
-    },
-    {
-      "id": "PYB2LGs",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 2
-    },
-    {
-      "id": "m8l2qbw",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 2
-    },
-    {
-      "id": "YuARYIT",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 2
-    },
-    {
-      "id": "DoHitSb",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "cI_8IzE",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "SAdO820",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "BpzdB4u",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "ZeVrqGn",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "AqzqD27",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "D26Arta",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "xdVLoBD",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "I6ehWsQ",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "rgAs-gn",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "76thfu2",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "8cFx6og",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "Kgo_m12",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "SnlulpM",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "7tSN0FU",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "dlrx43W",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "0yUFXmm",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "XE4HwZ7",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "mqJST_f",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "3OazciT",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "l74ySQZ",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "yKSyzsd",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "A9xKcUn",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "qVSVcD7",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "ZG-UB3P",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "jJxerBZ",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "fsaWWHc",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "cUx5zxb",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "Xm4gjI3",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "yKw3F_A",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "2Cu7pTG",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "m01AALQ",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "2SzaHUt",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "bhu_n-1",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "FN0TG4v",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "eBBqK09",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
-    },
-    {
-      "id": "S04MTXE",
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 10
     }
   ]
 }

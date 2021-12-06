@@ -45,15 +45,14 @@ export default function DeckInfo() {
     
     const handleDeleteCard = (event, cardId) => {
         event.preventDefault()
-        console.log("delete card method")
         async function deleteCardFromApi() {
             
             const abortController = new AbortController()
             const { signal } = abortController
             
             try {
-                console.log("card id", cardId)
                 const response = await deleteCard(cardId, signal)
+                console.log(response)
             } catch(error) {
                 if (error.name === "AbortError") {
                     console.log("Aborted")
@@ -125,10 +124,10 @@ export default function DeckInfo() {
         return (
             <React.Fragment>
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/decks">Decks</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{deck.name}</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="/">Home</a></li>
+                        <li className="breadcrumb-item"><a href="/decks">Decks</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">{deck.name}</li>
                     </ol>
                 </nav>
                 <h1>{deck.name}</h1>
