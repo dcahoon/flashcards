@@ -4,20 +4,26 @@ import NotFound from "./NotFound";
 import { Route, Switch } from "react-router-dom"
 import Decks from "./Decks"
 
+/* 
+*   Parents:
+*   Children: Decks, NotFound
+*/
+
+
 function Layout() {
-  
-  
   
   return (
     <React.Fragment>
       <Header />
       <div className="container">
-        {/* TODO: Implement the screen starting here */}
         <Switch>
-          <Route path={["/", "/decks"]}>
+          <Route exact path={"decks"}>
             <Decks />
           </Route>
-          <Route>
+          <Route path={"/"}>
+            <Decks />
+          </Route>
+          <Route path={"/*"}>
             <NotFound />
           </Route>
         </Switch>

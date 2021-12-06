@@ -1,25 +1,38 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { readCard, updateCard } from "../utils/api"
+import { useParams, useHistory } from "react-router-dom"
+import { readDeck, readCard, updateCard } from "../utils/api"
+
+/* 
+*   Parents: index > Decks > Deck
+*   Children: none
+*
+*   Description: Fetches a card from the api determined by useParams.
+*   Displays a form for the user to change the card.
+*/
 
 export default function Edit() {
 
-    const { cardId } = useParams()
-    const [card, setCard] = useState({}) 
+    const history = useHistory()
+
+    const { deckId, cardId } = useParams()
+    const [card, setCard] = useParams({})
+    const [deck, setDeck] = useState({}) 
 
     useEffect(() => {
         
         const { signal } = new AbortController()
 
-        async function getCardFromApi() {
+        async function getDeckFromApi() {
             try {
-                const response = await readCard(cardId, signal)
-                setCard(response)
+                const deckResponse = await readDeck(deckId, signal)
+                setDeck(deckResponse)
+                const cardResponse = await readCard(cardId, signal)
+                setCard(cardResponse)
             } catch (error) {
                 console.log(error)
             }
         }
-        getCardFromApi()
+        getDeckFromApi()
 
     }, [])
 
@@ -34,7 +47,8 @@ export default function Edit() {
 
     async function handleSubmit(event) {
         
-        const { signal } = new AbortController()
+        const abortController = new AbortController()
+        const { signal } = abortController
     
         async function changeCardWithApi() {
             try {
@@ -45,12 +59,23 @@ export default function Edit() {
         }
         changeCardWithApi()
 
+        history.push(`/decks/${deckId}`)
+
+        return () => abortController.abort()
+
     }
 
     if (card) {
 
         return (
             <React.Fragment>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href={`/decks/${deckId}`}>{deck.name}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Card</li>
+                    </ol>
+                </nav>
                 <form onSubmit={handleSubmit}>
                     <h2>Edit Card {card.id}</h2>
                     <div>
@@ -84,11 +109,7 @@ export default function Edit() {
 
     }
 
-
     return (
         <p>Edit cards section</p>
     )
 }
-
-/* export async function readCard(cardId, signal) {
-export async function updateCard(updatedCard, signal) { */

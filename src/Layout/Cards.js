@@ -1,23 +1,26 @@
 import React from "react"
 import { Route, Switch, useRouteMatch } from "react-router-dom"
 import NewCard from "./NewCard"
-import Card from "./Card"
 import Edit from "./Edit"
+
+/* 
+*   Parents: index > Decks > Deck
+*   Children: Edit, NewCard, Card
+*
+*   Description: Routes information about cards based on url.
+*/
 
 export default function Cards({ deck }) {
 
-    const { url } = useRouteMatch()
+    const { url, path } = useRouteMatch()
 
     return (
         <Switch>
-            <Route path={`${url}/:cardId/edit`}>
+            <Route path={`${path}/:cardId/edit`}>
                 <Edit />
             </Route>
-            <Route path={`${url}/new`}>
+            <Route path={`${path}/new`}>
                 <NewCard deckId={deck.id} />
-            </Route>
-            <Route path={`${url}/:cardId`}>
-                <Card />
             </Route>
         </Switch>
     )

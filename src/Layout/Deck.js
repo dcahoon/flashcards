@@ -1,37 +1,51 @@
 import React, { useEffect, useState } from "react"
-import { Link, Route, Switch, useRouteMatch, useParams } from "react-router-dom"
+import { Link, Route, Switch, useRouteMatch, useParams, useHistory } from "react-router-dom"
 import Study from "./Study"
-import Edit from "./Edit"
+import EditDeck from "./EditDeck"
 import Cards from "./Cards"
 import DeckInfo from "./DeckInfo"
+import NotFound from "./NotFound"
 import { readDeck } from "../utils/api"
+
+/* 
+*   Parents: index > Decks
+*   Children: DeckInfo, Study, Edit, Cards
+*
+*   Description: Fetches a deck from the API and routes the deck
+*   info accordingly based on url.
+*/
 
 export default function Deck() {
 
-    const { path } = useRouteMatch()
+    const { path, url } = useRouteMatch()
     const { deckId } = useParams()
     const [deck, setDeck] = useState({})
 
     useEffect(() => {
         
+        const abortController = new AbortController()
+        const { signal } = abortController
+        
         async function getDeck() {
-            
-            const { signal } = new AbortController()
             
             try {
                 const response = await readDeck(deckId, signal)
                 setDeck(response)
-                
             } catch(error) {
-                console.log(error.message)
+                if (error.message === "AbortError") {
+                    console.log(error.message)
+                } else {
+                    return
+                }
             }
 
         }
         
         getDeck()
-        console.log("inside deck.js deckId:", deckId)
 
-    }, [path])
+        return () => abortController.abort()
+
+    }, [deckId, url])
 
     
     if (deck.id) {
@@ -48,10 +62,13 @@ export default function Deck() {
                         <Study />
                     </Route>
                     <Route path={`${path}/edit`}>
-                        <Edit />
+                        <EditDeck />
                     </Route>
                     <Route path={`${path}/cards`}>
-                        <Cards deck={deck} />
+                        <Cards deck={deck} setDeck={setDeck} />
+                    </Route>
+                    <Route path={`${path}/*`}>
+                        <NotFound />
                     </Route>
                 </Switch>
     
@@ -59,8 +76,7 @@ export default function Deck() {
         )
     }
     
-    return "Loading..."
-
+    return <NotFound />
 
 
 

@@ -1,8 +1,18 @@
 import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
 import { createDeck } from "../utils/api"
+
+/* 
+*   Parents: index > Decks
+*   Children: none
+*   
+*   Description: Presents a form for creating a new deck and handles submission.
+*/
 
 export default function New() {
     
+    const history = useHistory()
+
     const initialFormData = {
         name: "New Deck",
         description: "Enter a description here...",
@@ -16,16 +26,22 @@ export default function New() {
             ...formData,
             [target.name]: value,
         })
-
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
         createDeck(formData)
+        history.push("/decks")
     }
 
     return (
         <React.Fragment>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">New Deck</li>
+                </ol>
+            </nav>
             <h1>Create Deck</h1>
             <form onSubmit={handleSubmit}>
                 <div className="py-1">
