@@ -11,7 +11,7 @@
       "id": 2
     },
     {
-      "name": "New Deck",
+      "name": "New Deck name",
       "description": "Enter a description here...",
       "id": 3
     }
@@ -55,8 +55,20 @@
       "id": 7
     },
     {
-      "id": 9,
-      "front": "new card front",
+      "id": 17,
+      "front": "Question/Card Front",
+      "back": "Answer/Card Back",
+      "deckId": 3
+    },
+    {
+      "id": 18,
+      "front": "Question/Card Front",
+      "back": "Answer/Card Back",
+      "deckId": 3
+    },
+    {
+      "id": 19,
+      "front": "Question/Card Front",
       "back": "Answer/Card Back",
       "deckId": 3
     }

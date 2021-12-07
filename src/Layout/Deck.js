@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react"
 import { Route, Switch, useRouteMatch, useParams } from "react-router-dom"
 import Study from "./Study"
 import EditDeck from "./EditDeck"
-import Cards from "./Cards"
+import CardForm from "./CardForm"
 import DeckInfo from "./DeckInfo"
 import NotFound from "./NotFound"
 import { readDeck } from "../utils/api"
 
 /* 
-*   Parents: index > Decks
-*   Children: DeckInfo, Study, Edit, Cards
+*   Parents:    index > Decks
+*   Children:   DeckInfo, Study, CardForm
 *
 *   Description: Fetches a deck from the API and routes the deck
-*   info accordingly based on url.
+*       info accordingly based on url.
 */
 
 export default function Deck() {
@@ -27,7 +27,6 @@ export default function Deck() {
         const { signal } = abortController
         
         async function getDeck() {
-            
             try {
                 const response = await readDeck(deckId, signal)
                 setDeck(response)
@@ -38,7 +37,6 @@ export default function Deck() {
                     return
                 }
             }
-
         }
         
         getDeck()
@@ -65,10 +63,10 @@ export default function Deck() {
                         <EditDeck />
                     </Route>
                     <Route exact path={`${path}/cards/new`}>
-                        <Cards deck={deck} setDeck={setDeck} />
+                        <CardForm newCard={true} editCard={false} />
                     </Route>
-                    <Route path={`${path}/cards`, `${path}/cards/:cardId`}>
-                        <Cards deck={deck} setDeck={setDeck} />
+                    <Route path={`${path}/cards/:cardId/edit`}>
+                        <CardForm newCard={false} editCard={true} />
                     </Route>
                     <Route path={`${path}/*`}>
                         <NotFound />

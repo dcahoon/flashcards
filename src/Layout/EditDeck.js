@@ -104,18 +104,21 @@ export default function EditDeck() {
                         id="name"
                         value={deck.name}
                         onChange={handleChange}
+                        className="w-100"
                     />
                     <br/>
                     <label>
                         Description:
                     </label>
                     <br/>
-                    <input
+                    <textarea
                         type="textarea"
                         name="description"
                         id="description"
                         value={deck.description}
                         onChange={handleChange}
+                        rows="3"
+                        className="w-100"
                     />
                     <br/>
                     <button type="submit" className="btn btn-primary my-3">

@@ -45,7 +45,7 @@ async function fetchJson(url, options, onCancel) {
   try {
     const response = await fetch(url, options);
 
-    if (response.status < 200 || response.status > 399 && response.status !== 500) { // added exclusion for 500
+    if (response.status < 200 || response.status > 399) { // added exclusion for 500
       throw new Error(`${response.status} - ${response.statusText}`);
     }
 

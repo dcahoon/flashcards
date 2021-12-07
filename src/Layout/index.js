@@ -9,19 +9,6 @@ import Decks from "./Decks"
 *   Children: Decks, NotFound, Header
 */
 
-/**
- *  DeckList <>
- *  New <>
- *  NotFound <>
- *  Deck  ->  DeckInfo <>
- *  Deck  ->  EditDeck <>
- *  Deck  ->  Study <>
- *  Deck  ->  Edit  <>
- *  Deck  ->  Cards ->  Edit <>
- *  Deck  ->  Cards ->  NewCard <> 
- */
-
-
 function Layout() {
   
   return (

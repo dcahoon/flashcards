@@ -50,18 +50,24 @@ export default function Study() {
     }, [])
 
     const handleClick = () => {
+        
         setFront(!front)
+        
         if (front && index === deck.cards.length - 1) {
+            
             if (window.confirm("Would you like to restart this deck?")) {
                 setIndex(0)
                 setFront(!front)
             } else {
-                history.push("./")
+                history.push("")
             }
-        }
+            
+        }    
+
     }
 
     const incrementIndex = () => {
+        
         if (index < deck.cards.length - 1) {
             setIndex((previous) => previous + 1)
             setFront(!front)
@@ -109,6 +115,7 @@ export default function Study() {
                                                 <button
                                                     className="btn btn-primary mx-2" 
                                                     onClick={incrementIndex}
+                                                    disabled={index === deck.cards.length - 1}
                                                 >
                                                     Next Card
                                                 </button>

@@ -96,7 +96,6 @@ export default function DeckInfo() {
         
         const content = deck.cards.map((card, index) => (
             <div className="card p-4 my-4" key={index}>
-                <p>{card.id}</p>
                 <div className="row">
                     <div className="col">
                         <h5 className="card-title">Front:</h5>
