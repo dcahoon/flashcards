@@ -49,31 +49,34 @@ export default function Study() {
 
     }, [])
 
-    const handleClick = () => {
-        
-        setFront(!front)
-        
-        if (front && index === deck.cards.length - 1) {
-            
-            if (window.confirm("Would you like to restart this deck?")) {
-                setIndex(0)
-                setFront(!front)
-            } else {
-                history.push("")
+    // This useEffect tracks the front useState and prompts to restart 
+    // when the back of the last card is displayed.
+    useEffect(() => {
+        if (deck.id) {
+            if (!front && index === deck.cards.length - 1) {    
+                if (window.confirm("Would you like to restart this deck?")) {
+                    setIndex(0)
+                    setFront(!front)
+                } else {
+                    history.push("")
+                }
             }
-            
-        }    
+        }
+    }, [front])
 
+    // Changes the state of front when the "flip" button is clicked.
+    const handleClick = () => {    
+        setFront(!front)
     }
 
+    // Increments the index to move to the next card when the "next card"
+    // button is clicked.
     const incrementIndex = () => {
-        
         if (index < deck.cards.length - 1) {
             setIndex((previous) => previous + 1)
             setFront(!front)
             return
         }
-
         return
     }
 
