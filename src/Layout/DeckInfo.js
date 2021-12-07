@@ -44,36 +44,40 @@ export default function DeckInfo() {
     }, [])
     
     const handleDeleteCard = (event, cardId) => {
+        
         event.preventDefault()
-        async function deleteCardFromApi() {
-            
-            const abortController = new AbortController()
-            const { signal } = abortController
-            
-            try {
-                const response = await deleteCard(cardId, signal)
-                console.log(response)
-            } catch(error) {
-                if (error.name === "AbortError") {
-                    console.log("Aborted")
-                } else {
-                    throw error
+        
+        // Only run function after prompting user.
+        if (window.confirm("Are you sure you want to delete this card?")) {
+
+            async function deleteCardFromApi() {
+                
+                const abortController = new AbortController()
+                const { signal } = abortController
+                
+                try {
+                    const response = await deleteCard(cardId, signal)
+                    console.log(response)
+                } catch(error) {
+                    if (error.name === "AbortError") {
+                        console.log("Aborted")
+                    } else {
+                        throw error
+                    }
                 }
+        
+                // Reload the deck after card is deleted.
+                try {
+                    const response = await readDeck(deckId, signal)
+                    setDeck(response)            
+                } catch(error) {
+                    console.log(error.message)
+                }
+        
             }
-    
-            try {
-                const response = await readDeck(deckId, signal)
-                setDeck(response)
-                            
-            } catch(error) {
-                console.log(error.message)
-            }
-    
+            deleteCardFromApi()
+            history.go(0)
         }
-
-        deleteCardFromApi()
-
-        history.go(0)
     }
 
     async function handleDeleteDeck(deckId) {
