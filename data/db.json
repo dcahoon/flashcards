@@ -11,14 +11,9 @@
       "id": 2
     },
     {
-      "name": "New Dec",
-      "description": "Enter a description here...",
-      "id": 3
-    },
-    {
       "name": "New Deck",
       "description": "Enter a description here...",
-      "id": 4
+      "id": 3
     }
   ],
   "cards": [
@@ -60,14 +55,8 @@
       "id": 7
     },
     {
-      "id": 28,
-      "front": "Question/Card Front",
-      "back": "Answer/Card Back",
-      "deckId": 3
-    },
-    {
-      "id": 29,
-      "front": "Question/Card Front",
+      "id": 9,
+      "front": "new card front",
       "back": "Answer/Card Back",
       "deckId": 3
     }
