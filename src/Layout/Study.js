@@ -62,7 +62,7 @@ export default function Study() {
                 }
             }
         }
-    }, [front, deck.cards.length, deck.id, history, index])
+    }, [front, deck.cards, deck.id, history, index])
 
     // Changes the state of front when the "flip" button is clicked.
     const handleClick = () => {    
