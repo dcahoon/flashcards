@@ -41,7 +41,7 @@ export default function DeckInfo() {
         
         return () => abortController.abort()
 
-    }, [])
+    }, [deckId])
     
     const handleDeleteCard = (event, cardId) => {
         

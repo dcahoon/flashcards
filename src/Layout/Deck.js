@@ -63,10 +63,10 @@ export default function Deck() {
                         <EditDeck />
                     </Route>
                     <Route exact path={`${path}/cards/new`}>
-                        <CardForm newCard={true} editCard={false} />
+                        <CardForm editCard={false} />
                     </Route>
                     <Route path={`${path}/cards/:cardId/edit`}>
-                        <CardForm newCard={false} editCard={true} />
+                        <CardForm editCard={true} />
                     </Route>
                     <Route path={`${path}/*`}>
                         <NotFound />

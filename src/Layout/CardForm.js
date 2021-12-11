@@ -3,24 +3,23 @@ import { useHistory, useParams } from "react-router-dom"
 import { updateCard, readCard, createCard, readDeck } from "../utils/api"
 
 /* 
-*   Parents:    index > Decks > Deck > NewCard
-*               index > Decks > Deck > Edit
+*   Parents:    index > Decks > Deck
 *   
 *   Children:   none
 *
 *   Description: Generates a form to create/edit a card and handles
-*       the form submit based on the prop entered (editCard/newCard)
+*       the form submit based on the prop entered (editCard true/false)
 */
 
-export default function CardForm({ editCard, newCard }) {
+export default function CardForm({ editCard }) {
 
     const history = useHistory()
     const { deckId, cardId } = useParams()
 
     const initialFormData = {
         id: 0,
-        front: "Question/Card Front",
-        back: "Answer/Card Back",
+        front: "",
+        back: "",
     }
 
     const [card, setCard] = useState({...initialFormData})
@@ -63,7 +62,7 @@ export default function CardForm({ editCard, newCard }) {
 
         return () => abortController.abort()
 
-    }, [])
+    }, [cardId, deckId, editCard])
 
     const handleChange = (event) => {    
         const value = event.target.value
@@ -95,7 +94,7 @@ export default function CardForm({ editCard, newCard }) {
             changeCardWithApi()
         }
 
-        if (newCard) {
+        if (!editCard) {
             async function createCardWithApi() {
                 try {
                     createCard(deckId, card, signal)
@@ -137,6 +136,7 @@ export default function CardForm({ editCard, newCard }) {
                         value={card.front}
                         className="w-100"
                         rows="3"
+                        placeholder="Question/Front of card"
                     ></textarea>
                 </div>
                 <div>
@@ -149,6 +149,7 @@ export default function CardForm({ editCard, newCard }) {
                         value={card.back}
                         className="w-100"
                         rows="3"
+                        placeholder="Answer/Back of card"
                     ></textarea>
                 </div>
                 <button type="submit" className="btn btn-primary my-4 mx-2">

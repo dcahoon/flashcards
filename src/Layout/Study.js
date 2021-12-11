@@ -47,7 +47,7 @@ export default function Study() {
 
         return () => abortController.abort()
 
-    }, [])
+    }, [deckId])
 
     // This useEffect tracks the front useState and prompts to restart 
     // when the back of the last card is displayed.
@@ -62,7 +62,7 @@ export default function Study() {
                 }
             }
         }
-    }, [front])
+    }, [front, deck.cards.length, deck.id, history, index])
 
     // Changes the state of front when the "flip" button is clicked.
     const handleClick = () => {    
